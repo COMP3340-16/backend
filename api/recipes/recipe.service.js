@@ -5,12 +5,17 @@ const { NotFoundException } = require('../../lib/errors/errors');
 const RecipeService = {};
 
 RecipeService.find = async function find({ type, limit, page }) {
-  const recipes = await Recipe.find({ type }).skip(limit * page).limit(limit);
+  const recipes = await Recipe.find({ type }).populate('user').skip(limit * page).limit(limit);
+  return recipes;
+}
+
+RecipeService.findForUser = async function findForUser({ userId }) {
+  const recipes = await Recipe.find({ user: userId }).populate('user');
   return recipes;
 }
 
 RecipeService.findById = async function findById(recipeId) {
-  const recipe = await Recipe.findById(recipeId);
+  const recipe = await Recipe.findById(recipeId).populate('user');
   if (!recipe) throw new NotFoundException();
   return recipe;
 }

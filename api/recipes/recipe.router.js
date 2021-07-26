@@ -17,7 +17,17 @@ router.get('/:recipeId', async function (req, res, next) {
 router.get('/', async function (req, res, next) {
   try {
     let recipes = await RecipeController.find(req.query);
-    console.log(recipes)
+    return res.json(recipes);
+  } catch (error) { next(error); }
+});
+
+/**
+ * Get recipes belonging to user
+ */
+router.get('/user/:userId', async function (req, res, next) {
+  try {
+    let recipes = await RecipeController.findForUser(req.params);
+    console.log(recipes);
     return res.json(recipes);
   } catch (error) { next(error); }
 });
