@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon index.js",
-    "init_recipes": "node ./scripts/populate_recipes/populate_recipes.js"
+    "init_recipes": "node ./scripts/populate_recipes/populate_recipes.js",
+    "init_admin": "node ./scripts/init_admin.js"
   },
   "author": "Mostapha Rammo",
   "license": "ISC",

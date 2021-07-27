@@ -16,6 +16,10 @@ UserService.isAdmin = async function isAdmin(userId) {
   return false;
 }
 
+UserService.findAll = async function findAll() {
+  return await User.find();
+}
+
 /**
  * Find a user by it's unique _id
  */
@@ -43,6 +47,11 @@ UserService.create = async function create(newUser) {
     password: await hash_password(newUser.password)
   });
   return await user.save();
+}
+
+UserService.update = async function update(userUpdate) {
+  const updatedUser = await User.findByIdAndUpdate(userUpdate._id, { $set: userUpdate }, { new: true });
+  return updatedUser;
 }
 
 module.exports = UserService;

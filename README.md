@@ -32,6 +32,11 @@ Populate the database initially (this only needs to be run once on initial setup
 npm run init_recipes
 ```
 
+Create the admin user, so you can log in as admin. 
+```
+npm run init_admin
+```
+
 Okay let's start it up
 ```
 npm run start:dev

@@ -8,4 +8,14 @@ const RecipeSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
+RecipeSchema.pre('find', function () {
+  this.populate('user');
+});
+
+RecipeSchema.post('save', function (doc, next) {
+  doc.populate('user').execPopulate().then(function () {
+    next();
+  });
+});
+
 module.exports = mongoose.model('Recipe', RecipeSchema);

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 const RecipeController = require('./recipe.controller');
 
@@ -35,7 +36,7 @@ router.get('/user/:userId', async function (req, res, next) {
 /**
  * Create a new recipe
  */
-router.post('/', async function (req, res, next) {
+router.post('/', passport.authenticate('jwt'), async function (req, res, next) {
   try {
     let recipe = await RecipeController.create(req.body);
     return res.json(recipe);
@@ -45,7 +46,7 @@ router.post('/', async function (req, res, next) {
 /**
  * Update an existing recipe
  */
-router.put('/', async function (req, res, next) {
+router.put('/', passport.authenticate('jwt'), async function (req, res, next) {
   try {
     let recipe = await RecipeController.update(req.body);
     return res.json(recipe);

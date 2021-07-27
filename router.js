@@ -2,6 +2,7 @@ const passport = require('passport');
 const UserRouter = require('./api/users/user.router');
 const AuthRouter = require('./api/auth/auth.router');
 const RecipeRouter = require('./api/recipes/recipe.router');
+const ThemeRouter = require('./api/theme/theme.router');
 
 const routes = {
   private: {
@@ -9,6 +10,7 @@ const routes = {
   public: {
     '/api/users': UserRouter,
     '/api/recipes': RecipeRouter,
+    '/api/theme': ThemeRouter,
     '/auth': AuthRouter,
   }
 }
